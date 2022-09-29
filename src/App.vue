@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container column">
+    <app-form @addNewBlock="addNewSummaryBlock"></app-form>
+    <app-summary :summary="summary"></app-summary>
+  </div>
+  <app-comment></app-comment>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppForm from "@/components/AppForm";
+import AppSummary from "@/components/AppSummary";
+import AppComment from "@/components/AppComment";
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      summary: []
+    }
+  },
   components: {
-    HelloWorld
+    AppForm,
+    AppSummary,
+    AppComment
+  },
+  methods: {
+    addNewSummaryBlock(val) {
+      this.summary.push(val)
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .avatar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .avatar img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+  }
 </style>
